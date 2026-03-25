@@ -7,10 +7,15 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(project_options INTERFACE)
 target_compile_options(project_options INTERFACE
+    # Debug configuration: enable warnings and sanitizers
     $<$<CONFIG:Debug>:-Wall>
     $<$<CONFIG:Debug>:-Wextra>
     $<$<CONFIG:Debug>:-Wpedantic>
-    $<$<CONFIG:Release>:-O3 -DNDEBUG>
+    $<$<CONFIG:Debug>:-fsanitize=address,undefined>
+    $<$<CONFIG:Debug>:-fno-omit-frame-pointer>
+
+    # Release configuration: optimize and disable assertions
+    $<$<CONFIG:Release>:-fstack-protector-strong>
 )
 
 target_link_options(project_options INTERFACE
