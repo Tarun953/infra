@@ -21,3 +21,7 @@ target_compile_options(project_options INTERFACE
 target_link_options(project_options INTERFACE
     $<$<CONFIG:Debug>: -fsanitize=address,undefined>
 )
+
+add_subdirectory(external)
+add_subdirectory(common)
+add_subdirectory(binance_md)
