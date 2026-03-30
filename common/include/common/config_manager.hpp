@@ -3,7 +3,7 @@
 
 namespace infra
 {
-    namespace config
+    namespace common
     {
         class ConfigManager
         {

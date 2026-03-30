@@ -23,5 +23,6 @@ target_link_options(project_options INTERFACE
 )
 
 add_subdirectory(external)
+add_subdirectory(containers)
 add_subdirectory(common)
 add_subdirectory(binance_md)

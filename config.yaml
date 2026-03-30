@@ -1,1 +1,2 @@
 log_dir: "/home/tarun/infra/logs"
+log_file_name: "infra.log"

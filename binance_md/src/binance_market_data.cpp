@@ -1,4 +1,5 @@
 #include <common/config_manager.hpp>
+#include <common/logger.hpp>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -15,7 +16,7 @@ int main(int argc, char *argv[])
 
     try
     {
-        infra::config::ConfigManager::getInstance().loadConfig(config_file);
+        infra::common::ConfigManager::getInstance().loadConfig(config_file);
     }
     catch (const std::exception &e)
     {
@@ -23,7 +24,15 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    std::string log_dir = infra::config::ConfigManager::getInstance().getValue<std::string>("log_dir");
-    std::cout << "Log directory: " << log_dir << std::endl;
+    std::string log_dir = infra::common::ConfigManager::getInstance().getValue<std::string>("log_dir");
+    std::string log_file_name = infra::common::ConfigManager::getInstance().getValue<std::string>("log_file_name");
+
+    infra::common::Logger::getInstance().initialize(log_dir, log_file_name);
+    infra::common::Logger::getInstance().log("Application started");
+    infra::common::Logger::getInstance().log("Configuration loaded from: " + config_file);
+    infra::common::Logger::getInstance().log("Log directory: " + log_dir);
+    infra::common::Logger::getInstance().log("Log file name: " + log_file_name);
+    infra::common::Logger::getInstance().log("Application closing");
+
     return EXIT_SUCCESS;
 }

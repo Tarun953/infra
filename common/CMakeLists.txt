@@ -7,4 +7,5 @@ target_include_directories(common
 target_link_libraries(common
     INTERFACE fkYAML::fkYAML
     INTERFACE project_options
+    INTERFACE container
 )
