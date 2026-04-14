@@ -12,5 +12,12 @@ FetchContent_Declare(
     GIT_TAG v7.3.0 #requires 4+ API for Backend and Frontend separation
 )
 
+FetchContent_Declare(
+    simdjson
+    GIT_REPOSITORY https://github.com/simdjson/simdjson.git
+    GIT_TAG v4.6.0
+)
+
 FetchContent_MakeAvailable(fkYAML)
 FetchContent_MakeAvailable(quill)
+FetchContent_MakeAvailable(simdjson)
