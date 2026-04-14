@@ -1,5 +1,5 @@
 #include <common/config_manager.hpp>
-#include <common/logger.hpp>
+#include <common/logger_quill.hpp>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -27,12 +27,10 @@ int main(int argc, char *argv[])
     std::string log_dir = infra::common::ConfigManager::getInstance().getValue<std::string>("log_dir");
     std::string log_file_name = infra::common::ConfigManager::getInstance().getValue<std::string>("log_file_name");
 
-    infra::common::Logger::getInstance().initialize(log_dir, log_file_name);
-    infra::common::Logger::getInstance().log("Application started");
-    infra::common::Logger::getInstance().log("Configuration loaded from: " + config_file);
-    infra::common::Logger::getInstance().log("Log directory: " + log_dir);
-    infra::common::Logger::getInstance().log("Log file name: " + log_file_name);
-    infra::common::Logger::getInstance().log("Application closing");
+    infra::common::QuillLogger::getInstance(log_dir + "/" + log_file_name);
+
+    INFRA_LOG_DEBUG("Application started");
+    INFRA_LOG_DEBUG("Configuration loaded from: {}", config_file);
 
     return EXIT_SUCCESS;
 }
