@@ -234,6 +234,7 @@ namespace infra
             void apply_socket_options(boost::asio::ip::tcp::socket &socket)
             {
                 boost::beast::error_code ec;
+                // Disable Nagle's algorithm if specified in the configuration
                 if (config_.tcpNoDelay_)
                 {
                     socket.set_option(boost::asio::ip::tcp::no_delay(true), ec);
